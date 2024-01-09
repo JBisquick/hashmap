@@ -65,10 +65,28 @@ function hashMap() {
     return false;
   };
 
+  const remove = (key) => {
+    const index = hash(key);
+    if (bucketList[index] === undefined) {
+      return;
+    }
+    // i is for deleting the right key in the possible array
+    let i = 0;
+    for (let item of bucketList[index]) {
+      if (item[0] === key) {
+        bucketList[index].splice(i, 1);
+        size -= 1;
+      } 
+      i += 1;
+    }
+    console.log(bucketList);
+  };
+
   return {
     set,
     get,
-    has
+    has,
+    remove
   };
 }
 
@@ -80,5 +98,6 @@ console.log(thing.get('mark'));
 console.log(thing.get('bobby'));
 console.log(thing.has('mark'));
 console.log(thing.has('bobby'));
+thing.remove('Tim');
 
 
