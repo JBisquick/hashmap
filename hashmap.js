@@ -37,11 +37,38 @@ function hashMap() {
     } else {
       bucketList[index].push([key, value]);
     }
-    console.log(bucketList);
+  };
+
+  const get = (key) => {
+    const index = hash(key);
+    if (bucketList[index] === undefined) {
+      return null;
+    }
+    for (let item of bucketList[index]) {
+      if (item[0] === key) {
+        return item[1];
+      } 
+    }
+    return null;
+  };
+
+  const has = (key) => {
+    const index = hash(key);
+    if (bucketList[index] === undefined) {
+      return false;
+    }
+    for (let item of bucketList[index]) {
+      if (item[0] === key) {
+        return true;
+      } 
+    }
+    return false;
   };
 
   return {
-    set
+    set,
+    get,
+    has
   };
 }
 
@@ -49,5 +76,9 @@ const thing = hashMap();
 thing.set('bob', 7);
 thing.set('mark', 78);
 thing.set('Tim', 12);
+console.log(thing.get('mark'));
+console.log(thing.get('bobby'));
+console.log(thing.has('mark'));
+console.log(thing.has('bobby'));
 
 
