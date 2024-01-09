@@ -79,14 +79,24 @@ function hashMap() {
       } 
       i += 1;
     }
-    console.log(bucketList);
+  };
+
+  const length = () => {
+    return size;
+  };
+
+  const clear = () => {
+    size = 0;
+    bucketList = Array(16);
   };
 
   return {
     set,
     get,
     has,
-    remove
+    remove,
+    length,
+    clear
   };
 }
 
@@ -99,5 +109,7 @@ console.log(thing.get('bobby'));
 console.log(thing.has('mark'));
 console.log(thing.has('bobby'));
 thing.remove('Tim');
+console.log(thing.length());
+thing.clear();
 
 
