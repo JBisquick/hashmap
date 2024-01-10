@@ -102,6 +102,18 @@ function hashMap() {
     return keyList;
   };
 
+  const values = () => {
+    const keyList = [];
+    for (let bucket of bucketList) {
+      if (bucket !== undefined) {
+        for (let item of bucket) {
+          keyList.push(item[1]);
+        }
+      }
+    }
+    return keyList;
+  };
+
   return {
     set,
     get,
@@ -109,7 +121,8 @@ function hashMap() {
     remove,
     length,
     clear,
-    keys
+    keys,
+    values
   };
 }
 
@@ -122,6 +135,7 @@ console.log(thing.get('bobby'));
 console.log(thing.has('mark'));
 console.log(thing.has('bobby'));
 console.log(thing.keys());
+console.log(thing.values());
 thing.remove('Tim');
 console.log(thing.length());
 thing.clear();
